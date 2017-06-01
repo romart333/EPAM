@@ -1,6 +1,8 @@
 ﻿// Написать консольное приложение, которое проверяет принадлежность точки заштрихованной области.
 // Пользователь вводит координаты точки (x; y) и выбирает букву графика(a-к). В консоли должно высветиться сообщение: «Точка[(x; y)] принадлежит фигуре[г]». 
 
+using System.Text;
+
 namespace Task01
 {
     using System;
@@ -9,7 +11,10 @@ namespace Task01
     {
         public static void Main(string[] args)
         {
-            char ch;
+	        Console.InputEncoding = Encoding.Unicode;//todo pn без явного задания кодировки будет использована кодировка по умолчанию. Машина, на которой я проверяю настроена на английскую культуру, поэтому кириллические символы отображаются в ней как знаки вопроса. Следует учитывать такое специфичное поведение консоли в следующих заданиях :)/
+	        Console.OutputEncoding = Encoding.Unicode;
+
+			char ch;
             string comparison = "абвгдежзик";
             while (true)
             {
@@ -109,7 +114,7 @@ namespace Task01
                         break;
                     }
 
-                case 'и':
+                case 'и'://todo pn пишет, что (-2;-1) не принадлежит фигуре, хотя должна
                     {
                         pointInside = Figure9IncludesPoint(xUser, yUser);
                         break;
@@ -124,8 +129,8 @@ namespace Task01
 
             if (pointInside)
             {
-                Console.WriteLine($"Точка[({xUser};{yUser})] принадлежит фигуре [{ch}]");
-            }
+                Console.WriteLine($"Точка[({xUser};{yUser})] принадлежит фигуре [{ch}]");//todo pn лучше условие проверять непосредственнов WriteLine в виде оператора "? :", так не будет дублироваться большая часть сообщения.
+			}
             else
             {
                 Console.WriteLine($"Точка[({xUser};{yUser})] НЕ принадлежит фигуре [{ch}]");
@@ -168,7 +173,7 @@ namespace Task01
             return false;
         }
 
-        private static bool Figure4IncludesPoint(double x, double y) // ромб
+        private static bool Figure4IncludesPoint(double x, double y) // ромб //todo pn у тебя два одинаковых комментария для разного кода, лучше бы как-нибудь по-другому объяснить
         {
             double maxRhomb = 1;
             if (Math.Abs(x) + Math.Abs(y) <= maxRhomb)

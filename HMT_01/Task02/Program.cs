@@ -1,4 +1,6 @@
-﻿namespace Task02
+﻿using System.Text;
+
+namespace Task02
 {
     using System;
 
@@ -6,7 +8,10 @@
     {
         public static void Main(string[] args)
         {
-            double a = 0, b = 0, c = 0, h = 0, discr = 0, x1 = 0, x2 = 0;
+	        Console.InputEncoding = Encoding.Unicode;
+	        Console.OutputEncoding = Encoding.Unicode;
+
+			double a = 0, b = 0, c = 0, h = 0, discr = 0, x1 = 0, x2 = 0;
             while (true)
             {
                 Console.WriteLine("Введите h: ");
