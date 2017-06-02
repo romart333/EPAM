@@ -2,6 +2,7 @@
 namespace Task03
 {
     using System;
+    using System.Text;
 
     public class Program
     {
@@ -11,6 +12,9 @@ namespace Task03
             bool result = false;
             while (true)
             {
+                Console.InputEncoding = Encoding.Unicode;
+                Console.OutputEncoding = Encoding.Unicode;
+
                 Console.WriteLine("Введите число N: ");
                 result = int.TryParse(Console.ReadLine(), out count);
                 if (!result || count <= 0)
