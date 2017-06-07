@@ -35,7 +35,7 @@ namespace Task11
                 {
                     case 1:
                         {
-                            SetArrayRandom(array);
+                            SetArrayRandom(array);//todo pn логично было бы вывести пользователю массив после его заполнения
                             break;
                         }
 
