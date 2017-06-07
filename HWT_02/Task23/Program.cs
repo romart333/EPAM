@@ -7,7 +7,7 @@ namespace Task11
  
     public class Program
     {
-        public static void Main(string[] args)
+        public static void Main(string[] args)//todo pn копипаст кода вижу, исследовательской работы - нет
         {
             Console.InputEncoding = Encoding.Unicode;
             Console.OutputEncoding = Encoding.Unicode;
