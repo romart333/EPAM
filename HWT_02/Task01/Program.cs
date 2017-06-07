@@ -1,7 +1,7 @@
 ﻿// Написать программу, которая определяет площадь прямоугольника со сторонами a и b.
 // Если пользователь вводит некорректные значения (отрицательные, или 0), должно выдаваться сообщение об ошибке.
 // Возможность ввода пользователем строки вида «абвгд», или нецелых чисел игнорировать.
-namespace Task01
+namespace Task01 //todo pn заданий было 2, поэтому и солюшенов должно быть 2.
 {
     using System;
     using System.Text;
@@ -13,10 +13,10 @@ namespace Task01
             Console.InputEncoding = Encoding.Unicode;
             Console.OutputEncoding = Encoding.Unicode;
 
-            int heigth = 0, width = 0;
-            bool result = false;
+            int heigth = 0, width = 0;//todo pn инициализировать переменные значениями по умолчанию бессмысленно.
+            bool result = false;//todo pn инициализировать переменные значениями по умолчанию бессмысленно.
 
-            do
+			do
             {
                 Console.WriteLine("Введите высоту прямоугольника: ");
                 result = int.TryParse(Console.ReadLine(), out heigth);
