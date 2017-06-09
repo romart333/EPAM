@@ -16,7 +16,7 @@ namespace Task01
             int heigth, width;//todo pn инициализировать переменные значениями по умолчанию бессмысленно.
             bool result;//todo pn инициализировать переменные значениями по умолчанию бессмысленно.
 
-			do
+            do
             {
                 Console.WriteLine("Введите высоту прямоугольника: ");
                 result = int.TryParse(Console.ReadLine(), out heigth);

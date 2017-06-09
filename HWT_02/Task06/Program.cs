@@ -17,7 +17,7 @@ namespace Task06
             int param = 0;
             string bold = "Bold", italic = "Italic", underline = "Underline", none = "None";
             int bitParam = 0;
-            while (true)//todo pn как пользователь программно выйдет из консоли? Он может бояться нажать на крестик.
+            while (true)
             {
                 
                 Console.WriteLine("Параметры записи: ");
@@ -30,14 +30,20 @@ namespace Task06
                     Console.WriteLine("{0}{1}{2}", 
 						(bitParam & 1) > 0 ? bold + " " : string.Empty, 
 						(bitParam & 2) > 0 ? italic + " " : string.Empty, 
-						(bitParam & 4) > 0 ? underline : string.Empty);//toro pn такие длинные строки кода лучше разбивать на несколько. Строка должна влезать на стандартный экран (диагональ 15/17 дюймов)
+						(bitParam & 4) > 0 ? underline : string.Empty);
                 }
 
                 Console.WriteLine("Введите: ");
-                Console.WriteLine($"\t1: {bold}\n\t2: {italic}\n\t3: {underline}");
+                Console.WriteLine($"\t1: {bold}\n\t2: {italic}\n\t3: {underline}\n\t4:Exit");
+
                 while (true)
                 {
                     result = int.TryParse(Console.ReadLine(), out param);
+                    if (param == 4)
+                    {
+                        return;
+                    }
+
                     if (!result || param < 1 || param > 3)
                     {
                         Console.WriteLine("Неверный ввод.");

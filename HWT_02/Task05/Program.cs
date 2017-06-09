@@ -11,7 +11,8 @@ namespace Task05
             Console.InputEncoding = Encoding.Unicode;
             Console.OutputEncoding = Encoding.Unicode;
 
-            int multipleA = 3, multipleB = 5, number = 1000, sum = 0;//todo pn лучше не объявлять переменные в одной строке, читается очень плохо.
+            int multipleA = 3, multipleB = 5;
+            int number = 1000, sum = 0;
             for (int i = 1; i < number; i++)
             {
                 if (i % multipleA == 0 || i % multipleB == 0)
