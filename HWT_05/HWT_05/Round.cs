@@ -8,7 +8,7 @@
 
         public Round()
         {
-            this.radius = 1;
+            this.radius = 1;//todo pn значение по умолчанию в константы
         }
 
         public double Radius
@@ -22,8 +22,8 @@
             {
                 if (value <= 0)
                 {
-                    this.radius = 1;
-                    Console.WriteLine("Радиус должен быть положительным значением. Установлено значение 1");
+                    this.radius = 1;//todo pn видишь? ты его уже не один раз используешь
+					Console.WriteLine("Радиус должен быть положительным значением. Установлено значение 1");
                 }
                 else
                 {

@@ -9,8 +9,8 @@
 
         public Triangle()
         {
-            this.a = this.b = this.c = 1;
-        }
+            this.a = this.b = this.c = 1;//todo pn можно и не собрать треугольник из любых сторон. Требуется проверка.
+		}
 
         public double A
         {

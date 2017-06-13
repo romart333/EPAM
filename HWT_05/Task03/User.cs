@@ -33,8 +33,8 @@
                 this.birthDate = value;
                 DateTime now = DateTime.Now;
                 DateTime tick = new DateTime((now - value).Ticks);
-                this.Age = tick.Year - 1;
-            }
+                this.Age = tick.Year - 1;//todo pn не всегда значение возраста будет корректно. Требуется проверка.
+			}
         }
     }
 }
