@@ -13,10 +13,36 @@ namespace Task02
 
             char choose;
             string inputError = "Неверный ввод";
-            Triangle triangle = new Triangle();
-            triangle.A = InputDouble("Введите сторону a", inputError);
-            triangle.B = InputDouble("Введите сторону b", inputError);
-            triangle.C = InputDouble("Введите сторону c", inputError);
+            Triangle triangle;
+            for(;;)
+            { 
+                double A = InputDouble("Введите сторону a", inputError);
+                double B = InputDouble("Введите сторону b", inputError);
+                double C = InputDouble("Введите сторону c", inputError);
+                bool created;
+                triangle = new Triangle(A, B, C, out created);
+                if(created)
+                {
+                    break;
+                }
+
+                Console.WriteLine("Ввести заново?(Y,N)");
+                string repeat;
+                do
+                {
+                    repeat = Console.ReadLine().ToString();
+                } while (repeat != "Y" && repeat != "N");
+                Console.WriteLine();
+
+                if (repeat == "Y")
+                {
+                    continue;
+                }
+
+                triangle = new Triangle();
+                Console.WriteLine("Установлены значения по умолчанию(1,2,2)");
+                break;
+            }
 
             for (;;)
             {

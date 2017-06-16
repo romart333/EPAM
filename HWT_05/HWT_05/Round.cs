@@ -4,11 +4,12 @@
 
     public class Round
     {
+        private const double radiusDefault = 1;//значение по умолчанию в константы
         private double radius;
 
         public Round()
         {
-            this.radius = 1;//todo pn значение по умолчанию в константы
+            radius = radiusDefault;
         }
 
         public double Radius
@@ -22,7 +23,7 @@
             {
                 if (value <= 0)
                 {
-                    this.radius = 1;//todo pn видишь? ты его уже не один раз используешь
+                    this.radius = radiusDefault;//todo pn видишь? ты его уже не один раз используешь
 					Console.WriteLine("Радиус должен быть положительным значением. Установлено значение 1");
                 }
                 else

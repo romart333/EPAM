@@ -28,12 +28,16 @@
                 return this.birthDate;
             }
 
-            set
+            set // Вычисление возраста сравнением лет,месяцев,дней
             {
                 this.birthDate = value;
+           
                 DateTime now = DateTime.Now;
-                DateTime tick = new DateTime((now - value).Ticks);
-                this.Age = tick.Year - 1;//todo pn не всегда значение возраста будет корректно. Требуется проверка.
+                this.Age = now.Year - this.birthDate.Year;
+                if (this.birthDate.Month >= now.Month && this.birthDate.Day >= now.Day)
+                {
+                    this.Age--;
+                }
 			}
         }
     }

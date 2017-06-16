@@ -2,58 +2,54 @@
 {
     using System;
 
-    public class Triangle
+    public class Triangle // Треугольник без изменения параметров
     {
-        private double a, b, c;
-        private string strErr = "Сторона должна быть положительной. Установлено значение 1";
+        private const double Default1 = 1;
+        private const double Default2 = 2;
+        private string strErr = "Неверные значения для длин сторон";
 
         public Triangle()
         {
-            this.a = this.b = this.c = 1;//todo pn можно и не собрать треугольник из любых сторон. Требуется проверка.
-		}
+            this.A = Default1;
+            this.B = this.C = Default2;
+        }
+
+        public Triangle(double a, double b, double c, out bool ok)
+        {
+            double sumAB = a + b;
+            double sumBC = b + c;
+            double sumAC = a + c;
+            if (a <= 0 || b <= 0 || c <= 0 || c > sumAB || a > sumBC || b > sumAC)
+            {
+                Console.WriteLine(strErr);
+                ok = false;
+                return;
+            }
+
+            this.A = a;
+            this.B = b;
+            this.C = c;
+            ok = true;
+        }
 
         public double A
         {
-            get
-            {
-                return this.a;
-            }
-
-            set
-            {
-                this.a = this.Validate(value);
-            }
+            get; set;
         }
 
         public double B
         {
-            get
-            {
-                return this.b;
-            }
-
-            set
-            {
-                this.b = this.Validate(value);
-            }
+            get; private set;
         }
 
         public double C
         {
-            get
-            {
-                return this.c;
-            }
-
-            set
-            {
-                this.c = this.Validate(value);
-            }
+            get; private set;
         }
 
         public double Perimeter
         {
-            get { return this.a + this.b + this.c; }
+            get { return this.A + this.B + this.C; }
         }
 
         public double Area
@@ -61,19 +57,8 @@
             get
             {
                 double halfperim = this.Perimeter / 2;
-                return Math.Sqrt(halfperim * (this.a - halfperim) * (this.b - halfperim) * (this.c - halfperim));
+                return Math.Sqrt(halfperim * (halfperim - this.A) * (halfperim - this.B) * (halfperim - this.C));
             }
-        }
-
-        private double Validate(double value)
-        {
-            if (value <= 0)
-            {
-                Console.WriteLine(this.strErr);
-                return 1;
-            }
-
-            return value;
         }
     }
 }
