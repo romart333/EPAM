@@ -1,22 +1,25 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Task04
+﻿namespace Task04
 {
-    static class Map
+    using System;
+
+    public static class Map
     {
         public const int Width = 800;
         public const int Heigth = 600;
-        private static Player player;
-        private static Wolf wolf;
-        private static Bear bear;
-        private static Cherry cherry;
-        private static Chocolate chocolate;
-        private static Stone stone;
-        private static Tree tree;
+
+        internal static Player player { get; set; }
+           
+        internal static Wolf wolf { get; set; }
+
+        internal static Bear bear { get; set; }
+
+        internal static Cherry cherry { get; set; }
+
+        internal static Chocolate chocolate { get; set; }
+
+        internal static Stone stone { get; set; }
+
+        internal static Tree tree { get; set; }
 
         public static void InitialMap()
         {
@@ -33,6 +36,5 @@ namespace Task04
         {
             // запуск игры..
         }
-        
     }
 }

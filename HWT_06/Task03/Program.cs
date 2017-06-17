@@ -13,7 +13,7 @@ namespace Task03
             Console.InputEncoding = Encoding.Unicode;
             Console.OutputEncoding = Encoding.Unicode;
             char choose;
-            double x, y, radius;
+            double radius;
             Point point;
             bool exit;
             for (;;)

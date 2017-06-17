@@ -4,7 +4,6 @@ namespace Task01
     using System;
     using System.Globalization;
     using System.Text;
-    using HWT_06;
 
     public class Program
     {
@@ -38,7 +37,7 @@ namespace Task01
             employee.LengthOfWork = InputInt("Введите стаж работы:", Resource1.strErrWork);
             Console.WriteLine("Введите должность:");
             employee.Position = Console.ReadLine();
-            
+
             char choose;
             for (;;)
             {

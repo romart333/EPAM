@@ -1,7 +1,6 @@
 ﻿namespace Task01
 {
     using System;
-    using HWT_06;
     using Task01;
 
     public class Employee : User
