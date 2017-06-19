@@ -21,7 +21,7 @@
 
         internal static Tree tree { get; set; }
 
-        public static void InitialMap()
+        public static void InitialMap()//todo pn как-то неинтересно, когда  в игре 1 игрок, 1 волк, 1 медведь, 1 вишня итп... Добавь всего по многу.
         {
             player = new Player();
             wolf = new Wolf();

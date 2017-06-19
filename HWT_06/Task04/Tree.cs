@@ -4,9 +4,9 @@
 
     public class Tree : IBarrier
     {
-        public int Size { get; set; } // 1x1
+        public int Size { get; set; } // 1x1//todo pn аналогично
 
-        public int LocationX { get; set; }
+		public int LocationX { get; set; }
 
         public int LocationY { get; set; }
     }
