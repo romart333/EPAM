@@ -6,6 +6,7 @@
     {
         private const int SPEED = 2;
         private const int DAMAGE = 1;
+        public const int Length = 3;
 
         public Wolf()
         {
@@ -27,7 +28,7 @@
 
         public void AttackPlayer()
         {
-            Map.player.Health--;
+            Map.player[0].Health--;
         }
 
         public void Move()
@@ -52,7 +53,7 @@
                 this.Down = true;
             }
 
-            if (Math.Abs(this.LocationX - Map.player.LocationX) <= 1 && Math.Abs(this.LocationY - Map.player.LocationY) <= 1)
+            if (Math.Abs(this.LocationX - Map.player[0].LocationX) <= 1 && Math.Abs(this.LocationY - Map.player[0].LocationY) <= 1)
             {
                 this.AttackPlayer();
                 return;

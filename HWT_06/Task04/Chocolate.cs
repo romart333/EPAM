@@ -4,13 +4,15 @@
 
     public class Chocolate : IBonus
     {
+        public const int Length = 6;
+
         public int LocationY { get; set; }
 
         public int LocationX { get; set; }
 
         public void CharacterUp()
         {
-            Map.player.Speed++;
+            Map.player[0].Speed++;
         }
     }
 }

@@ -4,6 +4,8 @@
 
     public interface IBarrier : IItem
     {
-        int Size { get; set; }
+        int Heigth { get; }
+
+        int Width { get; }
     }
 }

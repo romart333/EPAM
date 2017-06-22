@@ -6,6 +6,7 @@
     {
         private const int SPEED = 2;
         private const int HEALTH = 5;
+        public const int CountPlayers = 2;
 
         public Player()
         {
@@ -70,14 +71,22 @@
                     }
             }
 
-            if (Map.cherry.LocationY == this.LocationY && this.LocationX == Map.cherry.LocationX)
+            for (int i = 0; i < Map.cherry.Length; i++)
             {
-                Map.cherry.CharacterUp();
+                if (Map.cherry[i].LocationY == this.LocationY && this.LocationX == Map.cherry[i].LocationX)
+                {
+                    Map.cherry[i].CharacterUp();
+                    return;
+                }
             }
 
-            if (Map.chocolate.LocationY == this.LocationY && Map.chocolate.LocationX == this.LocationX)
-            {
-                Map.chocolate.CharacterUp();
+            for (int i = 0; i < Map.chocolate.Length; i++)
+            { 
+                if (Map.chocolate[i].LocationY == this.LocationY && Map.chocolate[i].LocationX == this.LocationX)
+                {
+                    Map.chocolate[i].CharacterUp();
+                    return;
+                }
             }
         }
     }

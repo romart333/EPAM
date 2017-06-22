@@ -7,34 +7,42 @@
         public const int Width = 800;
         public const int Heigth = 600;
 
-        internal static Player player { get; set; }
-           
-        internal static Wolf wolf { get; set; }
+        internal static Player[] player;
 
-        internal static Bear bear { get; set; }
+        internal static Wolf[] wolf;
 
-        internal static Cherry cherry { get; set; }
+        internal static Bear[] bear;
 
-        internal static Chocolate chocolate { get; set; }
+        internal static Cherry[] cherry;
 
-        internal static Stone stone { get; set; }
+        internal static Chocolate[] chocolate;
 
-        internal static Tree tree { get; set; }
+        internal static Stone[] stone;
 
-        public static void InitialMap()//todo pn как-то неинтересно, когда  в игре 1 игрок, 1 волк, 1 медведь, 1 вишня итп... Добавь всего по многу.
-        {
-            player = new Player();
-            wolf = new Wolf();
-            bear = new Bear();
-            cherry = new Cherry();
-            chocolate = new Chocolate();
-            stone = new Stone();
-            tree = new Tree();
-        }
-
+        internal static Tree[] tree;
+    
         public static void Start()
         {
-            // запуск игры..
+            InitialMap();
+        }
+
+        private static void InitialObjects<T>(ref T[] arr) where T : class, new()
+        {
+            for(int i = 0; i < arr.Length; i++)
+            {
+                arr[i] = new T();
+            }
+        }
+
+        private static void InitialMap()
+        {
+            InitialObjects(ref player);
+            InitialObjects(ref wolf);
+            InitialObjects(ref bear);
+            InitialObjects(ref cherry);
+            InitialObjects(ref chocolate);
+            InitialObjects(ref stone);
+            InitialObjects(ref tree);
         }
     }
 }

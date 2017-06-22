@@ -4,7 +4,11 @@
 
     public class Stone : IBarrier
     {
-        public int Size { get; set; } // 3x3//todo pn а если захочется прямоугольный камень?
+        public const int Length = 3;
+
+        public int Heigth { get;}
+
+        public int Width { get; }
 
         public int LocationX { get; set; }
 

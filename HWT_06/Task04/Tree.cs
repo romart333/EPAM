@@ -4,9 +4,13 @@
 
     public class Tree : IBarrier
     {
-        public int Size { get; set; } // 1x1//todo pn аналогично
+        public const int Length = 7;
 
-		public int LocationX { get; set; }
+        public int Heigth { get; }
+
+        public int Width { get; }
+
+        public int LocationX { get; set; }
 
         public int LocationY { get; set; }
     }
