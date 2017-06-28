@@ -7,7 +7,7 @@
 
     public delegate void PartingMessage(Person person);
 
-    public class Program
+    public class Program//todo pn вынеси, пожалуйста, отсюда логику в отдельный класс Office, а здесь оставь только приход/уход сотрудников.
     {
 
         public static void Main(string[] args)
@@ -22,7 +22,7 @@
             Ivan.Enter();
             GreetingMessage Greet = new GreetingMessage(Ivan.Greeting);
 
-            Petr.OnCame += Greet;
+            Petr.OnCame += Greet;//todo pn вроде вот этой логики
             Petr.Enter();
             Greet += Petr.Greeting;
 
