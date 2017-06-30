@@ -7,9 +7,8 @@
 
     public delegate void PartingMessage(Person person);
 
-    public class Program//todo pn вынеси, пожалуйста, отсюда логику в отдельный класс Office, а здесь оставь только приход/уход сотрудников.
+    public class Program//вынес логику в класс office, оставив только функции входа, выхода
     {
-
         public static void Main(string[] args)
         {
             Console.InputEncoding = Encoding.Unicode;
@@ -18,27 +17,22 @@
             Person Ivan = new Person("Иван");
             Person Petr = new Person("Петр");
             Person Alexander = new Person("Александр");
-                        
+
+            Office office = new Office();
             Ivan.Enter();
-            GreetingMessage Greet = new GreetingMessage(Ivan.Greeting);
 
-            Petr.OnCame += Greet;//todo pn вроде вот этой логики
+            office.InitGreeting(Ivan, Petr);
             Petr.Enter();
-            Greet += Petr.Greeting;
 
-            Alexander.OnCame += Greet;
+            office.InitGreeting(Petr, Alexander);
             Alexander.Enter();
 
-            PartingMessage Parting = Ivan.Parting;
-            // если написать PartingMessage Parting = Ivan.Parting + Petr.Parting -
-            // - ругается: "+" невозможно применить к операнду типа "группа методов".
-            // Почему так пишет?
-            Parting += Petr.Parting;
-            Alexander.OnLeave += Parting;
+            office.InitBye(Ivan, Petr);
+            office.AddEveningBye(Alexander);
             Alexander.Exit();
 
-            Parting -= Petr.Parting;
-            Petr.OnLeave += Parting;
+            office.RemoveBye(Petr);
+            office.AddEveningBye(Petr);
             Petr.Exit();
 
             Ivan.Exit();

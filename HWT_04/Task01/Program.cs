@@ -12,8 +12,8 @@ namespace Task01
             Console.OutputEncoding = Encoding.Unicode;
 
             string inputString;
-            int countWords = 0, i = 0, countLetters = 0;
-            double averageLength = 0;
+            int countWords, i, countLetters;
+            double averageLength;
 
             Console.WriteLine("Введите строку, для подсчета средней длины слова: ");
             inputString = Console.ReadLine();
