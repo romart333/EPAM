@@ -8,7 +8,7 @@
         {
             Console.WriteLine("Введите строку: ");
             string str = Console.ReadLine();
-            Console.WriteLine("Строка{0}является числом.", str.IsNumber() ? " " : " не ");
+            Console.WriteLine("Строка{0}является числом.", str.IsNumber() ? " " : " не ");//todo pn где проверка на положительность числа?
 
             Console.ReadLine();
         }
