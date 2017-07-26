@@ -174,16 +174,30 @@ ORDER BY COUNT(CustomerID) DESC
 --Результаты запроса должны быть упорядочены по продавцу,
 -- покупателю и по убыванию количества продаж. 
 -- В результатах должна быть сводная информация по продажам.
---SELECT
--- (SELECT LastName + FirstName
---  WHERE Employees.EmployeeID = Orders.EmployeeID) AS Seller,
---  (SELECT ContactName
---   WHERE Customers.CustomerID = Orders.CustomerID) AS Customer,
--- COUNT()
---FROM Northwind.Orders, Northwind.Employees, Northwind.Customers
---GROUP BY Orders.CustomerID, Orders.EmployeeID
---HAVING YEAR(ShippedDate) = 1998
---ORDER BY Seller, Customer, Amount
+SELECT CASE
+	   WHEN EmployeeID IS NULL
+	   THEN 'ALL'
+	   ELSE (SELECT LastName + ' ' + FirstName
+	           FROM Northwind.Employees
+			  WHERE Employees.EmployeeID = OrderTable.EmployeeID)
+		END AS 'Seller',
+	   CASE 
+	   WHEN CustomerID IS NULL
+	   THEN 'All'
+	   ELSE (SELECT ContactName
+	           FROM Northwind.Customers
+			  WHERE Customers.CustomerID = OrderTable.CustomerID)
+		END AS 'Customer',
+		    Amount
+  FROM (SELECT EmployeeID, CustomerID, COUNT(*) AS Amount
+		FROM Northwind.Orders
+		WHERE YEAR(ShippedDate) = 1998
+	   GROUP BY EmployeeID, CustomerID) AS OrderTable
+ ORDER BY Seller, Customer, Amount DESC
+
+
+		
+
 
 --6.4 Найти покупателей и продавцов, которые живут в одном городе.
 --Если в городе живут только один или несколько продавцов или только один
@@ -236,6 +250,24 @@ SELECT Worker.LastName AS 'User Name', Boss.LastName AS 'Boss'
 	   LEFT OUTER JOIN Northwind.Employees AS Boss
 	   ON Worker.ReportsTo = Boss.EmployeeID
 	WHERE Worker.ReportsTo IS NOT NULL
+
+
+--7.1 Определить продавцов, которые обслуживают регион 'Western' (таблица Region).
+--Результаты запроса должны высвечивать два поля:
+--'LastName' продавца и название обслуживаемой территории 
+--('TerritoryDescription' из таблицы Territories). Запрос должен использовать JOIN 
+--в предложении FROM. Для определения связей между таблицами Employees и Territories
+--надо использовать графические диаграммы для базы Northwind.
+SELECT LastName, TerritoryDescription
+  FROM Northwind.Employees AS Empl
+       INNER JOIN Northwind.EmployeeTerritories AS EmplTerr
+	   ON Empl.EmployeeID = EmplTerr.EmployeeID
+	   INNER JOIN Northwind.Territories AS Terr
+	   ON EmplTerr.TerritoryID = Terr.TerritoryID
+	   INNER JOIN Northwind.Region
+	   ON Terr.RegionID = Region.RegionID
+	   WHERE Region.RegionDescription = 'Western'
+
 
 --8.1 Высветить в результатах запроса имена всех заказчиков из таблицы Customers
 --и суммарное количество их заказов из таблицы Orders. Принять во внимание,
@@ -325,12 +357,61 @@ SELECT LEFT(LastName, 1) AS EmployeesAlphabet
 --он должен выполнять только то, что описано в требованиях по нему.
 --ВСЕ ЗАПРОСЫ ПО ВЫЗОВУ ПРОЦЕДУР ДОЛЖНЫ БЫТЬ НАПИСАНЫ В ФАЙЛЕ Query.sql –
 --см. пояснение ниже в разделе «Требования к оформлению».  
---SELECT LastName + ' ' + FirstName AS EmployeeName,
---(select OrderID
---from Orders where OrderID IN
---       (SELECT Orders.OrderID
---	      FROM Northwind.Orders
---	     WHERE EmployeeID = Employees.EmployeeID))
-	   
---  FROM Northwind.Employees, 
---       Northwind.Orders, Northwind.[Order Details]
+EXEC Northwind.GreatestOrders 1997, 10
+EXEC Northwind.GreatestOrders 1998, 3
+SELECT Emp.FirstName + ' ' + LastName AS EmployeeName, Orders.OrderID,
+	   OrdDet.UnitPrice * (1 - OrdDet.Discount) AS Cost
+  FROM Northwind.Employees AS Emp  
+       INNER JOIN Northwind.Orders
+	   ON Emp.EmployeeID = Orders.EmployeeID
+	   INNER JOIN Northwind.[Order Details] AS OrdDet
+	   ON Orders.OrderID = OrdDet.OrderID
+ WHERE YEAR(Orders.OrderDate) = 1998
+	   AND Emp.EmployeeID = 3
+ ORDER BY Cost DESC
+
+--13.2 Написать процедуру, которая возвращает заказы в таблице Orders, 
+--согласно указанному сроку доставки в днях (разница между OrderDate и ShippedDate).
+--В результатах должны быть возвращены заказы,
+--срок которых превышает переданное значение или еще недоставленные заказы. 
+--Значению по умолчанию для передаваемого срока 35 дней. 
+--Название процедуры ShippedOrdersDiff. Процедура должна высвечивать следующие колонки: 
+--OrderID, OrderDate, ShippedDate, ShippedDelay
+--(разность в днях между ShippedDate и OrderDate),
+--SpecifiedDelay (переданное в процедуру значение).
+--Необходимо продемонстрировать использование этой процедуры. 
+EXEC Northwind.ShippedOrdersDiff 10
+EXEC Northwind.ShippedOrdersDiff
+
+--13.3 Написать процедуру, которая высвечивает всех подчиненных заданного продавца, 
+--как непосредственных, так и подчиненных его подчиненных.
+--В качестве входного параметра функции используется EmployeeID. 
+--Необходимо распечатать имена подчиненных и выровнять их в тексте 
+--(использовать оператор PRINT) согласно иерархии подчинения. 
+--Продавец, для которого надо найти подчиненных также должен быть высвечен. 
+--Название процедуры SubordinationInfo. 
+--В качестве алгоритма для решения этой задачи надо использовать пример, 
+--приведенный в Books Online и рекомендованный Microsoft для 
+--решения подобного типа задач. Продемонстрировать использование процедуры. 
+EXEC PROC Northwind.SubbordinationInfo 2
+
+--13.4  Написать функцию, которая определяет, есть ли у продавца подчиненные.
+--Возвращает тип данных BIT. В качестве входного параметра функции используется
+--EmployeeID. Название функции IsBoss. Продемонстрировать использование функции
+--для всех продавцов из таблицы Employees.
+IF NOT EXISTS
+(SELECT *
+   FROM dbo.SYSOBJECTS
+  WHERE NAME = 'Bosses'
+        AND xType = 'U')
+
+CREATE TABLE #Bosses
+(EmployeeID int,
+   HaveBoss BIT)
+
+SELECT EmployeeID, Northwind.IsBoss(EmployeeID) AS HaveBoss
+  FROM Northwind.Employees;
+
+SELECT EmployeeID, HaveBoss
+FROM #Bosses
+DROP TABLE #Bosses
