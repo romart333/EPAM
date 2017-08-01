@@ -1,0 +1,18 @@
+ul {
+    -webkit-box-shadow: 10 10 0 1px rgb(140,0,0); 
+    -webkit-border-radius: 10;
+    -moz-box-shadow: 10 10 0 1px rgb(140,0,0);
+    -moz-border-radius: 10;
+    border-radius: 10;
+    box-shadow: 10 10  1px rgb(140,0,0); 
+    color: rgb(130,15,10);
+    background-color: rgb(250,230,150);
+    width: 200px;
+    padding:5;  
+}
+
+li {
+    list-style-type: none;
+    margin: 10px;  
+}
+

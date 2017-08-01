@@ -1,0 +1,36 @@
+.main {
+    background-color: #0690CF;
+    color: white;
+    width: 350;
+    height: 200;
+    padding: 20 0;
+    border: 3 solid  #1782B9;
+}
+
+.padding {
+    padding-left: 10;
+    margin-bottom: 20;
+}
+
+.registration {
+    height: 30;
+    border-bottom: 2 solid white;
+    font-size: 120%;
+}
+
+.button {
+    background-color: #FFDF7F;
+    color: black;
+}
+
+#right {
+    float: right;
+    width:50%;
+}
+
+#left{
+    float:left;
+    width:30%;
+}
+
+
