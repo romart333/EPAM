@@ -59,9 +59,15 @@
         }
 
         [TestMethod]
-        public void AddOrderTest()
+        public void AddOrderTest()//todo pn тест упал
         {
-            int expected = 1;
+
+			/*
+			 Message: Test method ClassLibrary.Tests.DALTests.AddOrderTest threw exception: 
+System.Data.SqlClient.SqlException: String or binary data would be truncated.
+The statement has been terminated.
+*/
+			int expected = 1;
             DAL dal = new DAL();
             int actual = dal.AddOrder(
                 1,
@@ -114,10 +120,12 @@
         }
 
         [TestMethod]
-        public void GetOrderHistoryTest()
-        {
-            // arrange
-            string customerID = "VINET";
+        public void GetOrderHistoryTest()//todo pn тест упал
+		{
+			/*Message: Test method ClassLibrary.Tests.DALTests.GetOrderDetailsTest threw exception: 
+System.Data.SqlClient.SqlException: Could not find stored procedure 'Northwind.CustOrdersDetail @orderID'.*/
+			// arrange
+			string customerID = "VINET";
             DAL dal = new DAL();
             List<Product> products = new List<Product>();
             string expectedProductName = "Filo Mix";
@@ -132,10 +140,12 @@
         }
 
         [TestMethod]
-        public void GetOrderDetailsTest()
-        {
-            // arrange
-            int orderID = 10248;
+        public void GetOrderDetailsTest()//todo pn тест упал
+		{
+			/*Message: Test method ClassLibrary.Tests.DALTests.GetOrderHistoryTest threw exception: 
+System.Data.SqlClient.SqlException: Could not find stored procedure 'CustOrdersHist @customerID'.*/
+			// arrange
+			int orderID = 10248;
             DAL dal = new DAL();
             List<Product> products = new List<Product>();
             string expectedProductName = "Queso Cabrales";

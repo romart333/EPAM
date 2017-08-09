@@ -9,7 +9,7 @@ namespace ClassLibrary
 
     public class DAL
     {
-        public string connectionString = "Data Source=(local);Initial Catalog=Northwind;Integrated Security=True";
+        public string connectionString = "Data Source=(local);Initial Catalog=Northwind;Integrated Security=True";//todo pn не прокатит. Нужно, во-первых, в конфиг вынести (у проекта тестов). Во-вторых, provider independent стиль использовать (в презентации есть слайд об этом, копипастни оттуда)
 
         public List<Order> GetOrders(int countOrders)
         {
