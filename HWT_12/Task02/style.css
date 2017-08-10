@@ -4,18 +4,21 @@
     width: 350;
     height: 200;
     padding: 20 0;
-    border: 3 solid  #1782B9;
+
+    border: 3px solid  #1782B9;
 }
 
 .padding {
-    padding-left: 10;
+    padding-left: 20;
+	
     margin-bottom: 20;
 }
 
 .registration {
-    height: 30;
-    border-bottom: 2 solid white;
     font-size: 120%;
+    border-bottom: 2px solid white;
+	padding-bottom:10;
+    
 }
 
 .button {
@@ -25,12 +28,20 @@
 
 #right {
     float: right;
-    width:50%;
+    width:160;
 }
 
 #left{
     float:left;
-    width:30%;
+    width:140;
+}
+
+.inputPass {
+	width:150;
+}
+
+.inputMail {
+	width: 320;
 }
 
 
