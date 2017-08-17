@@ -1,0 +1,24 @@
+.buttons {
+	float: left;
+	width: 40;
+	margin-top: 50;
+	margin-left: 10;
+}
+
+.containerList {
+	float: left;
+	width: 60;
+	margin-right : 10;
+}
+
+.button {
+	width: 30;
+}
+
+.List {
+	width: 70;
+}
+
+p {
+	text-align: center;
+}

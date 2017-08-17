@@ -1,0 +1,33 @@
+.containerList {
+	width:100;
+	float: left;
+}
+
+.Buttons {
+	margin: 10 5;
+	float: left;
+}
+
+#SelectedList, #AvailableList {
+	width:100;
+	float: left;
+}
+
+.button {
+	display: block;
+	margin-bottom: 2;
+	width:40;	
+}
+
+p {
+	text-align:center;
+	margin:0;
+}
+
+.unPress {
+	color: grey;
+}
+
+.press {
+	color: black;
+}
