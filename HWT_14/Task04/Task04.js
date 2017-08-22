@@ -1,3 +1,4 @@
+//todo pn почему нельзя перейти вперед?
 function Start() {
 	if (!window.opener) { // поскольку открытую юзером вкладку нельзя закрыть, открываем со страницы index0 страницу index1
 		window.open('index1.html');

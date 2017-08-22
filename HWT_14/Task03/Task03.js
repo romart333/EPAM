@@ -1,3 +1,4 @@
+/*todo pn теперь помести на страницу ещё один такой же контрол. Работать будет только первый.*/
 function Start() {
     var availableList = 'AvailableList';
     var selectedList = 'SelectedList';

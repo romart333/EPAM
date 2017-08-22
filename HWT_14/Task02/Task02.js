@@ -56,4 +56,4 @@ function Parse(expression) {
 }
 
 var expression = "3.5+4*10-5.3/1.1=";
-alert(expression + Parse(expression));
+alert(expression + Parse(expression));//todo pn аналогично 1 заданию
