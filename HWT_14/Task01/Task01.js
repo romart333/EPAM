@@ -1,4 +1,4 @@
-﻿function DeleteRepeatChar(inputString) {
+function DeleteRepeatChar(inputString) {
     var punctuations = " \\s?!:;,."
     var i = 0;
 
@@ -75,5 +75,5 @@
 
 
 var inputString = "У попа была собака";
-alert(inputString);
+alert(inputString);//todo pn было бы лучше вывеси в консоль (console.log) и показать на странице что-то типа "см. консоль". Ну и запросить у пользователя произвольную строку тоже было бы не лишним.
 alert(DeleteRepeatChar(inputString));
