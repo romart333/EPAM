@@ -1,6 +1,6 @@
 ﻿CREATE TABLE [Northwind].[Orders](
 	[OrderID] [int] IDENTITY(1,1) NOT NULL,
-	[CustomerID] [nchar](5) NULL,
+	[CustomerID] NCHAR(5) NULL,
 	[EmployeeID] [int] NULL,
 	[OrderDate] [datetime] NULL,
 	[RequiredDate] [datetime] NULL,

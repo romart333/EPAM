@@ -2,14 +2,20 @@
 {
     using System;
     using System.Collections.Generic;
-    using System.Data;
-    using System.Data.SqlClient;
     using ClassLibrary;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 
     [TestClass]
     public class DALTests
     {
+        private static DAL dal;
+
+        [ClassInitialize]
+        public static void InitializeClassTest(TestContext testContext)
+        {
+            dal = new DAL();
+        }
+
         [TestMethod]
         public void GetOrdersTest()
         {
@@ -20,7 +26,7 @@
             int expectedOrderID = 10248;
             string expectedCustomerID = "VINET";
             DateTime expectedShippedDate = new DateTime(1996, 7, 16);
-            DateTime expectedOrderDate = new DateTime(1996, 7, 4);
+            DateTime expectedOrderDate = new DateTime(1996, 4, 7);
             StateOrder expectedStateOrder = StateOrder.Executed;
 
             // act
@@ -38,14 +44,13 @@
         public void GetInfoOrderTest()
         {
             // arrange
-            DAL dal = new DAL();
             List<Order> order = new List<Order>();
             int orderID = 10248;
             int expectedOrderID = orderID;
             int expectedProductID = 11;
             string expectedProductName = "Queso Cabrales";
             DateTime expectedShippedDate = new DateTime(1996, 7, 16);
-            DateTime expectedOrderDate = new DateTime(1996, 7, 4);
+            DateTime expectedOrderDate = new DateTime(1996, 4, 7);
 
             // act
             order = dal.GetInfoOrder(orderID);
@@ -59,24 +64,17 @@
         }
 
         [TestMethod]
-        public void AddOrderTest()//todo pn тест упал
+        public void AddOrderTest()
         {
-
-			/*
-			 Message: Test method ClassLibrary.Tests.DALTests.AddOrderTest threw exception: 
-System.Data.SqlClient.SqlException: String or binary data would be truncated.
-The statement has been terminated.
-*/
-			int expected = 1;
-            DAL dal = new DAL();
+            int expected = 1;
             int actual = dal.AddOrder(
-                1,
-                "use",
-                1,
+                20000,
+                "VINET",
+                5,
                 new DateTime(1996, 7, 16),
                 new DateTime(1996, 8, 16),
                 new DateTime(1996, 9, 16),
-                5,
+                3,
                 200,
                 "ship",
                 "York",
@@ -97,7 +95,6 @@ The statement has been terminated.
             int orderID = 10248;
 
             int expected = 1;
-            DAL dal = new DAL();
 
             int actual = dal.SetOrderDate(orderDate, orderID);
 
@@ -112,7 +109,6 @@ The statement has been terminated.
             int orderID = 11000;
 
             int expected = 1;
-            DAL dal = new DAL();
 
             int actual = dal.SetOrderDate(orderDate, orderID);
 
@@ -120,13 +116,11 @@ The statement has been terminated.
         }
 
         [TestMethod]
-        public void GetOrderHistoryTest()//todo pn тест упал
-		{
-			/*Message: Test method ClassLibrary.Tests.DALTests.GetOrderDetailsTest threw exception: 
-System.Data.SqlClient.SqlException: Could not find stored procedure 'Northwind.CustOrdersDetail @orderID'.*/
-			// arrange
-			string customerID = "VINET";
-            DAL dal = new DAL();
+        public void GetOrderHistoryTest()
+        {
+            // arrange
+            string customerID = "VINET";
+
             List<Product> products = new List<Product>();
             string expectedProductName = "Filo Mix";
             int expectedTotal = 18;
@@ -140,19 +134,16 @@ System.Data.SqlClient.SqlException: Could not find stored procedure 'Northwind.C
         }
 
         [TestMethod]
-        public void GetOrderDetailsTest()//todo pn тест упал
-		{
-			/*Message: Test method ClassLibrary.Tests.DALTests.GetOrderHistoryTest threw exception: 
-System.Data.SqlClient.SqlException: Could not find stored procedure 'CustOrdersHist @customerID'.*/
-			// arrange
-			int orderID = 10248;
-            DAL dal = new DAL();
+        public void GetOrderDetailsTest()
+        {
+            // arrange
+            int orderID = 10248;
             List<Product> products = new List<Product>();
             string expectedProductName = "Queso Cabrales";
-            double expectedUnitPrice = 14;
-            int expectedQuantity = 12;
+            decimal expectedUnitPrice = 14;
+            Int16 expectedQuantity = 12;
             int expectedDiscount = 0;
-            double expectedExtendedPrice = 168;
+            decimal expectedExtendedPrice = 168;
 
             // act
             products = dal.GetOrderDetails(orderID);
